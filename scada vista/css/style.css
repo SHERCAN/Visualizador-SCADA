@@ -289,13 +289,30 @@
   width: 15rem;
 }
 
-.recuadro {
-  height: 8.01rem;
-  width: 10.1rem;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
 img {
   height: 2.2rem;
+}
+
+.grilla-visual {
+  grid-template-columns: auto auto auto auto auto auto;
+  display: grid;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-gap: 1rem;
+  /* grid-auto-rows: minmax(100px, auto); */
+}
+/* .grilla-visual > div {
+  text-align: center;
+} */
+.grilla-visual {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+  grid-auto-rows: repeat(3, 1fr);
+}
+.grilla {
+  height: 100%;
+}
+
+.llenado {
+  height: 100%;
 }
