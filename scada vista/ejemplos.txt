@@ -159,3 +159,5 @@
         </div>
     </div >
 ------------------------Ejemplo------------------------------------------------
+
+https://www.chartjs.org/docs/latest/samples/information.html
