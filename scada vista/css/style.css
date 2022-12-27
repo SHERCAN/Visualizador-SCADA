@@ -294,16 +294,6 @@ img {
 }
 
 .grilla-visual {
-  grid-template-columns: auto auto auto auto auto auto;
-  display: grid;
-  /* grid-template-columns: repeat(4, 1fr); */
-  grid-gap: 1rem;
-  /* grid-auto-rows: minmax(100px, auto); */
-}
-/* .grilla-visual > div {
-  text-align: center;
-} */
-.grilla-visual {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;

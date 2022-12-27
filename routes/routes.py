@@ -38,7 +38,7 @@ async def main(request: Request):
     data.pop('_id')
     for k, _ in data.items():
         data[k]['All'] = 'All'
-    print(data)
+    # print(data)
     clientes = dataBase.conn['Clients'].find()
     states = []
     cities = []
@@ -101,7 +101,7 @@ async def get_registers(request: Request):
                         if value.replace(" ", "") == i]
             if len(listaAux) > 0:
                 dictAux[str(listaAux[0])] = 1
-    print(dictAux)
+    # print(dictAux)
     if datos.get('initialdate') == '':
         fecha_inicio = '2022-12-02'
     else:
@@ -110,17 +110,17 @@ async def get_registers(request: Request):
         fecha_fin = '2022-12-03'
     else:
         fecha_fin = datos.get('finaldate').strip()
-    print(fecha_fin, fecha_inicio)
+    #print(fecha_fin, fecha_inicio)
     timestamp_inicio = int(datetime.strptime(
         fecha_inicio, "%Y-%m-%d").timestamp())
     timestamp_fin = int(datetime.strptime(fecha_fin, "%Y-%m-%d").timestamp())
     consulta = {"_id": {"$gte": ObjectId.from_datetime(datetime.fromtimestamp(timestamp_inicio)),
                         "$lt": ObjectId.from_datetime(datetime.fromtimestamp(timestamp_fin))}}
     # consulta.update(dictAux)
-    print(consulta)
+    # print(consulta)
     getData = dataBase.conn['Variables'].find(consulta, dictAux)
     # getData = dataBase.readData(kwargs=consulta)
-    print(getData[0])
+    # print(getData[0])
     base = list(getData).copy()
     for data in base:
         data['TimeStamp'] = ObjectId(data['_id']).generation_time
@@ -128,13 +128,13 @@ async def get_registers(request: Request):
     base = jsonable_encoder(base)
     keys = list(data.keys())
     keys.reverse()
-    print('control')
+    # print('control')
     with open('data.csv', 'w', newline='') as csvFilefromMongodb:
         tuliscsv = DictWriter(
             csvFilefromMongodb, fieldnames=keys, delimiter=",")
         tuliscsv.writeheader()
         tuliscsv.writerows(base)
-    print('control1')
+    # print('control1')
     return FileResponse('data.csv', filename='data.csv')
 
 
@@ -149,3 +149,16 @@ async def main(request: Request):
 #     context = {'request': request}
 #     response = templates.TemplateResponse('index.html', context=context)
 #     return response
+
+
+@ routes.get('/scada', response_class=HTMLResponse)
+async def scada(request: Request):
+    context = {'request': request}
+    response = templates.TemplateResponse('scada.html', context=context)
+    return response
+
+
+@routes.get('/info')
+async def addData(request: Request):
+    return dataBase.data
+    # return {'data': 'datos de la base'}
