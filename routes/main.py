@@ -122,14 +122,27 @@ async def signup(request: Request):
 async def get_csv():
     return FileResponse('data.csv', filename='data.csv')
 
+dataVisor = {}
+
+control = True
+
+# [{'name': 'GridsidevoltageL1-N', 'value': 0.0, 'register': 30, 'scale': 0.1,
+# 'write': False, 'write_type': None, 'write_range': None},
+# {'name': 'GridsidevoltageL2-N', 'value': 0.0, 'register': 31, 'scale': 0.1, 'write': False, 'write_t
+# ype': None, 'write_range': None}, {'name': 'GridsidevoltageL1-L2', 'value': 0.0, 'register': 32,
+# 'scale': 0.1, 'write': False, 'write_type': None, 'write_range': None},
+# {'name': 'VoltageatmiddlesideofrelayL1-L2', 'value': 0.0, 'register': 88,
+# 'scale': 0.1, 'write': False, 'write_type': None, 'write_range': None},
+
 
 @main.post('/addData')
-async def webhook(request: dict):
-
-    if str(datetime.now().strftime("%S")) == str("00") and control1:
+async def addDataPost(dataVisor: list):
+    # print(dataVisor)
+    dataBase.sendData(dataVisor)
+    if str(datetime.now().strftime("%S")) == str("00"):  # and control1:
         try:
-            datasNotFiltered = request
-            dataBase.sendData(request)
+            datasNotFiltered = dataVisor
+            # dataBase.sendData(dataVisor)
         except:
             pass
             control1 = False

@@ -3,7 +3,6 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.templating import Jinja2Templates
 from security.auth import auth_routes
 from routes.routes import routes
 from routes.main import main
@@ -23,7 +22,8 @@ app.include_router(routes)
 
 if __name__ == '__main__':
     if getenv('MODE') == 'TEST':
-        uvicorn.run('app:app', log_level='info', access_log=False, reload=True)
+        uvicorn.run('app:app', log_level='trace',
+                    access_log=True, reload=True)
     else:
         uvicorn.run(app='app:app', host='0.0.0.0', port=80,
                     log_level='info', access_log=False)

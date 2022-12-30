@@ -13,17 +13,20 @@ class BaseData():
         self.__dictGet = {}
         self.__conn = MongoClient(
             "mongodb+srv://yess:"+getenv('ACCESS_TOKEN')+"@cluster0.wdzh1o3.mongodb.net/?retryWrites=true&w=majority")[getenv('DATABASE')]
+        self.data = {}
 
     def sendData(self, data):
-        self.__conn['Variables'].insert_one(data)
-    def readData(self,*args,limite:int=100):
+        self.data = data
+        # self.__conn['Variables'].insert_one(self.data)
+
+    def readData(self, *args, limite: int = 100):
         '''
         parameters:
         limit: limit of data
         type_limit: int
         ([{'client': 'CLI-IA-DM-23'}, {'30': 1}],)'''
         if len(args) > 0:
-            return self.__conn['Variables'].find(args[0][0],args[0][1]).limit(limite)
+            return self.__conn['Variables'].find(args[0][0], args[0][1]).limit(limite)
         else:
             return self.__conn['Variables'].find().limit(limite)
 
