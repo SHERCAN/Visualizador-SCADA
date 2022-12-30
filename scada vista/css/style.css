@@ -734,14 +734,8 @@ img {
 
 .modal-header {
   padding: 2px 2px;
-  background-color: #cc1313;
+  background-color: #ccb013;
   color: rgb(255, 255, 255);
-}
-.modal-header2{
-  padding: 2px 2px;
-  background-color: #d2dc0d;
-  color: rgb(255, 255, 255);
-
 }
 
 .modal-body {padding: 50px 20px;}
