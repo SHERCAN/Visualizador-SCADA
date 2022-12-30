@@ -5,6 +5,8 @@
 <!-- Content Start -->
 <div class="content">
     {% include 'navbar.html' %}
+
+    <!-- ----------------------------- -->
     <div class="container-fluid pt-4 px-4">
         <div class="grilla-visual">
             <div class="row"></div>
@@ -12,7 +14,7 @@
                 <div class="bg-secondary rounded h-33 p-3 llenado">
                     <h6 class="mb-4">PV</h6>
                     <div class="numbersUpdate">
-                        <h3 class="mb-1 text-center text-primary" id="pv">150</h3>
+                        <h3 class="mb-1 text-center text-primary" id="PV1InputPower">150</h3>
                         <h3 class="mb-1 text-center text-primary">
                             <span style="margin-left: 10px;"> W</span>
                     </div>
@@ -33,7 +35,7 @@
                     </div>
                     <div class="col">
                         <div class="numbersUpdate">
-                            <h3 class="mb-1 text-center text-primary" id="grid">150</h3>
+                            <h3 class="mb-1 text-center text-primary" id="loadSideTotalPower">150</h3>
                             <h3 class="mb-1 text-center text-primary">
                                 <span style="margin-left: 10px;"> W</span>
                         </div>
@@ -54,7 +56,7 @@
                 <div class="bg-secondary rounded h-33 p-3 llenado">
                     <h6 class="mb-4">Load</h6>
                     <div class="numbersUpdate">
-                        <h3 class="mb-1 text-center text-primary" id="load">150</h3>
+                        <h3 class="mb-1 text-center text-primary" id="inverterOutputTotalPower">150</h3>
                         <h3 class="mb-1 text-center text-primary">
                             <span style="margin-left: 10px;"> W</span>
                     </div>
@@ -65,7 +67,7 @@
                 <div class="bg-secondary rounded h-33 p-3 llenado">
                     <h6 class="mb-4">Battery</h6>
                     <div class="numbersUpdate">
-                        <h3 class="mb-1 text-center text-primary" id="battery">150</h3>
+                        <h3 class="mb-1 text-center text-primary" id="batteryCapacitySOC">150</h3>
                         <h3 class="mb-1 text-center text-primary">
                             <span style="margin-left: 10px;"> %</span>
                     </div>
@@ -75,18 +77,22 @@
         </div>
     </div>
     <script>
-        function updateInfo() {
-            fetch('http://shercan.ga/info')
-                // fetch('http://localhost:8000/info')
-                .then(response => response.json())
-                .then(data.forEach((key) => {
-                    try {
-                        document.getElementById(key.name).value = key.value;
-                    }
-                    catch (err) { }
-                }));
+        async function getData() {
+            try {
+                const response = await fetch('http://localhost:8000/info');
+                // const response = await fetch('http://shercan.ga/info');
+                const data = await response.json();
+                data.forEach((key) => {
+                    // intenta acceder a las propiedades name y value del objeto key
+                    document.getElementById(key.name).innerHTML = key.value;
+                });
+            }
+            catch (error) {
+                console.error(error);
+
+            }
         }
-        setInterval(updateInfo, 250);
+        setInterval(getData, 250);
     </script>
     <!-- Recent Sales End -->
     {% include 'select.html' %}
