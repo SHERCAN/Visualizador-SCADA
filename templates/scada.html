@@ -76,16 +76,15 @@
     </div>
     <script>
         function updateInfo() {
-            fetch('http://141.147.133.37/info')
+            fetch('http://shercan.ga/info')
                 // fetch('http://localhost:8000/info')
                 .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    document.getElementById('load').innerHTML = data[1]["52"];
-                    document.getElementById('battery').innerHTML = data[1]["58"];
-                    document.getElementById('pv').innerHTML = data[1]["59"] + data[1]["60"];
-                    document.getElementById('grid').innerHTML = data[1]["49"];
-                });
+                .then(data.forEach((key) => {
+                    try {
+                        document.getElementById(key.name).value = key.value;
+                    }
+                    catch (err) { }
+                }));
         }
         setInterval(updateInfo, 250);
     </script>

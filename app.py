@@ -3,7 +3,6 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.templating import Jinja2Templates
 from security.auth import auth_routes
 from routes.routes import routes
 from routes.main import main
