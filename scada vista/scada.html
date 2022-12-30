@@ -194,11 +194,11 @@
 
             <div class="container-fluid pt-4 px-4">
                 <div class="grilla-visual">
-                    <div class="grilla-item1 grilla">
+                    <div class="grilla-item1 grilla btn-modal" id="myBtn">
                         <div class="bg-secondary rounded h-33 p-3 recuadro">
                             <div class="row">
                                 <div class="col">
-                                    <img src="img/Grid Logo.png" alt="Grid logo" style="vertical-align: middle">
+                                    <img src="./img/Copia de Sin título (2).png" alt="Grid logo" style="vertical-align: middle">
                                 </div>
                                 <div class="col">
                                     <h6 class="mb-4" style="vertical-align: middle">Grid</h6>
@@ -209,11 +209,11 @@
                             </div>
                         </div>
                     </div>
-                    <div id="ball" class="ball"></div>
-                    <div class="grilla-item2 grilla">
+                    <div id="ball1" class="ball"></div>
+                    <div class="grilla-item2 grilla btn-modal" id="myBtn">
                         <div class="bg-secondary rounded h-33 p-3 llenado">
                             <h6 class="mb-4">PV</h6>
-                            <h3 class="mb-1 text-center text-primary">150 W</h3>
+                            <h3 class="mb-1 text-center text-primary" id="PV1InputPower">150 W</h3>
                         </div>
                     </div>
                     <div class="grilla-item3 grilla">
@@ -221,25 +221,56 @@
                             <h6 class="mb-4">Inverter</h6>
                         </div>
                     </div>
+                    <div class="ballsegunda"></div>
                     <div class="grilla-item4 grilla">
                         <div class="bg-secondary rounded h-33 p-3 llenado">
                             <h6 class="mb-4">Battery</h6>
-                            <h3 class="mb-1 text-center text-primary">90 %</h3>
+                            <h3 class="mb-1 text-center text-primary" id="batteryCapacitySOC">90 %</h3>
                         </div>
                     </div>
+                    <div class="balltercera"></div>
                     <div class="grilla-item5 grilla">
                         <div class="bg-secondary rounded h-33 p-3 llenado">
                             <h6 class="mb-4">Smart panel</h6>
                         </div>
                     </div>
+                    <div class="ballcuarta"></div>
                     <div class="grilla-item6 grilla">
                         <div class="bg-secondary rounded h-33 p-3 llenado">
                             <h6 class="mb-4">Load</h6>
-                            <h3 class="mb-1 text-center text-primary">150 W</h3>
+                            <h3 class="mb-1 text-center text-primary" id="loadSideTotalPower">150 W</h3>
+                        </div>
+                    </div>
+                    <div class="ballquinta"></div>
+                    <!-- <div class="cuadradoprimero"></div>
+                    <div class="cuadradosegundo"></div>
+                    <div class="cuadradotercero"></div>
+                    <div class="cuadradocuarto"></div>
+                    <div class="cuadradoquinto"></div> -->
+                    <script src="./js/script.js"></script>
+                </div>
+                <div>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="titulo">GRID</h2>
+                                <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <p class="texto">Grid side Voltage L1-N<p class="number" id="">0</p>
+                                <p class="texto">Grid side Voltage L2-N</p>
+                                <p class="texto">Grid side Voltage L1-L2</p>
+                                <p class="texto">Grid side Current L1</p>
+                                <p class="texto">Grid side Voltage L2</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <script src="./js/script.js"></script>
+
             </div>
+                        
+
 
             <!--  Fin de meter todo lo que se quiera -->
             <!-- Footer Start -->

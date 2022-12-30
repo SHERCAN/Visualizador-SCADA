@@ -1,5 +1,8 @@
 /********** Template CSS **********/
 :root {
+  --ancho: 990%;
+}
+:root {
   --primary: #16eb3d;
   --secondary: #191c24;
   --light: #6c7293;
@@ -293,67 +296,65 @@ img {
   height: 2.2rem;
 }
 
-.grilla-visual {
-  grid-template-columns: auto auto auto auto auto auto;
-  display: grid;
-  /* grid-template-columns: repeat(4, 1fr); */
-  grid-gap: 2rem;
-  /* grid-auto-rows: minmax(100px, auto); */
-}
-/* .grilla-visual > div {
-  text-align: center;
-} */
+/*---------------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+
+
 .grilla-visual {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 2rem;
-  grid-auto-rows: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
 }
 .grilla {
   height: 100%;
 }
 .relleno{
-  height: 50;
+  height: 100%;
 }
 .llenado {
-  height: 61%;
+  height: 100%;
 }
 
 .grilla-item1{
-  margin-top: 250px;
+  grid-row: 2;
+  grid-column: 1;
+  z-index: 2;
+  cursor: pointer;
 }
 .grilla-item2{
-  position: relative;
-  height: 50%;
-  left: -200;
+  grid-column: 2;
+  grid-row:1;
+  z-index: 2;
+  cursor: pointer;
 }
+
 .grilla-item3{
-  position: relative;
-  top: 250px;
-  right: 10px;
-  left: -150px;
-  height: 50%;
+  grid-column: 2;
+  grid-row: 2;
+  z-index: 2;
+  cursor: pointer;
 }
 .grilla-item4{
-  position: relative;
-  top: 500px;
-  right: 10px;
-  left: -320px;
-  height: 50%;
+  grid-column: 2;
+  grid-row: 3;
+  z-index: 2;
+  cursor: pointer;
 }
 .grilla-item5{
-  position: relative;
-  top: 250px;
-  right: 10px;
-  left: -250px;
-  height: 50%;
+  grid-column: 3;
+  grid-row: 2;
+  z-index: 2;
+  cursor: pointer;
 }
 .grilla-item6{
-  position: relative;
-  top: -140px;
-  right: 10px;
-  left: 800px;
-  height: 170px;
+  grid-column: 4;
+  grid-row: 2;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .linea{
@@ -364,30 +365,426 @@ img {
   width: 50px;
   height: 50px;
 }
+
+.footer{
+  position: auto;
+}
+
+
+
+/*---------------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+/*---------------------------------------*/
+
+
 .ball {
-  /* estilos para la bolita */
-  width: 40px;
-  height: 20px;
-  background-color: rgb(5, 233, 20);
+  /* Va en X de grid a inverter */
+  width: 25px;
+  height: 5px;
+  display: grid;
+  background-color: rgb(233, 5, 5);
   border-radius: 30%;
+  grid-column: 1/4;
+  grid-row: 2/3;
+  margin-top: 50px;
+  z-index: 1;
   position: relative;
-  top: 300px; 
-  left:  -30px;
   /* animación para mover la bolita */
-  animation: move 1s linear infinite;
+  animation: move 1.5s linear infinite;
 }
 
 @keyframes move {
   from {
-      transform: translateX(0);
+      transform: translateX(0%);
   }
 
   to {
-      transform: translateX(550%);
+      transform: translateX(990%);
   }
 }
 
-.footer{
-  position: relative;
-  top: 300px;
+
+@media(max-width:700px)
+{
+  @keyframes move {
+    to{
+      transform: translateX(450%);
+    }
+    
+  }
+  .ball{
+    margin-top:85px ;
+  }
+  }
+
+@media(max-width:1080px)
+{
+  @keyframes move {
+    to{
+      transform: translateX(600%);
+    }
+    
+  }
 }
+
+/*---------------------------------------*/
+/*---------------------------------------*/
+
+/*--------------------------------------*/
+/*--------------------------------------*/
+
+.ballsegunda {
+  /* Va en Y de pv a inverter */
+  width: 5px;
+  height: 25px;
+  background-color: rgb(229, 233, 5);
+  border-radius: 30%;
+  grid-column: 2/4;
+  grid-row: 1/3;
+  margin-left: 100px;
+  margin-top: 100px;
+  z-index: 1;
+  /* animación para mover la bolita */
+  animation: movimiento 1.5s linear infinite;
+}
+
+
+@keyframes movimiento {
+  from {
+      transform: translateY(50%);
+  }
+
+  to {
+      transform: translateY(500%);
+  }
+}
+@media(max-width:700px)
+{
+
+  .ballsegunda{
+    margin-left:85px ;
+  }
+  }
+
+@media(max-width:1080px)
+{
+
+  .ballsegunda{
+    margin-left: 50px;
+  }
+}
+
+
+
+
+
+.balltercera {
+  /* Va en Y de inverter a batery */
+  width: 5px;
+  height: 25px;
+  background-color: rgb(32, 233, 5);
+  border-radius: 30%;
+  grid-column: 2/4;
+  grid-row: 2/3;
+  margin-top: 50px;
+  margin-left: 100px;
+  z-index: 1;
+  /* animación para mover la bolita */
+  animation: movement 1.5s linear infinite;
+}
+
+@keyframes movement {
+  from {
+      transform: translateY(200%);
+  }
+
+  to {
+      transform: translateY(600%);
+  }
+}
+@media(max-width:700px)
+{
+
+  .balltercera{
+    margin-left:85px ;
+  }
+  }
+
+@media(max-width:1080px)
+{
+
+  .balltercera{
+    margin-left: 50px;
+  }
+}
+
+.ballcuarta {
+  /* Va en X  de inverter a smart panel */
+  width: 25px;
+  height: 5px;
+  background-color: rgb(9, 172, 237);
+  border-radius: 30%;
+  grid-column: 3;
+  grid-row: 2;
+  margin-top: 50px;
+  z-index: 1;
+  /* animación para mover la bolita */
+  animation: movi 1.5s linear infinite;
+}
+
+@keyframes movi {
+  0% {
+      transform: translateX(-300%);
+  }
+  100% {
+      transform: translateX(150%);
+  }
+}
+@media(max-width:700px)
+{
+  .ballcuarta{
+    margin-top:85px ;
+  }
+  }
+
+@media(max-width:1080px)
+{
+  .ballcuarta{
+    margin-left: 0;
+  }
+}
+
+.ballquinta {
+  /* Va en X  de smart panel a load */
+  width: 25px;
+  height: 5px;
+  background-color: rgb(9, 172, 237);
+  border-radius: 30%;
+  grid-column: 4;
+  grid-row: 2;
+  margin-top: 50px;
+  z-index: 1;
+  /* animación para mover la bolita */
+  animation: movimi 1.5s linear infinite;
+}
+
+@keyframes movimi {
+  0% {
+      transform: translateX(-350%);
+  }
+  100% {
+      transform: translateX(100%);
+  }
+}
+@media(max-width:700px)
+{
+  .ballquinta{
+    margin-top: 85px;
+  }
+}
+
+@media(min-width:1080px)
+{
+}
+
+.cuadradoprimero{
+  /* Cuadro conectado a grid*/
+  width: 50px;
+  height: 20px;
+  display: grid;
+  border: 1.5px solid;
+  border-color: #6e706e;
+  grid-column: 1/4;
+  grid-row: 2/3;
+  margin-top: 187px;
+  margin-left: 210px;
+  z-index: 1;
+  position: fixed;
+  /* animación para mover la bolita */
+  animation:none;
+}
+
+
+
+.cuadradosegundo{
+  /* Cuadro conectado a inverter*/
+  width: 20px;
+  height: 50px;
+  display: grid;
+  border: 1.5px solid;
+  border-color: #6e706e;
+  grid-column: 2/4;
+  grid-row: 1/3;
+  z-index: 1;
+  margin-left: 93px;
+  margin-top: 100px;
+  /* animación para mover la bolita */
+  animation: none;
+}
+
+
+.cuadradotercero{
+  width: 20px;
+  height: 50px;
+  display: grid;
+  border: 1.5px solid;
+  border-color: #6e706e;
+  grid-column: 2/4;
+  grid-row: 3/3;
+  z-index: 1;
+  margin-top: -45px;
+  margin-left: 93px;
+  /* animación para mover la bolita */
+  animation: none;
+}
+
+.cuadradocuarto{
+  /* Devolución */
+  width: 50px;
+  height: 20px;
+  display: grid;
+  border: 1.5px solid;
+  border-color: #6e706e;
+  grid-column: 3;
+  grid-row: 2;
+  margin-top: 42px;
+  margin-left: -40px;
+  z-index: 1;
+  /* animación para mover la bolita */
+  animation: none;
+}
+
+.cuadradoquinto{
+  width: 50px;
+  height: 20px;
+  display: grid;
+  border: 1.5px solid;
+  border-color: #6e706e;
+  grid-column: 4;
+  grid-row: 2;
+  margin-top: 43px;
+  margin-left: -40px;
+  z-index: 1;
+  /* animación para mover la bolita */
+  animation: none;
+}
+
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+/* The Modal (background) */
+.modal {
+  display: grid; /* Hidden by default */
+  z-index: 3; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  width: 100%; /* Full width */
+  height: 150%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(179, 44, 44); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.491); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #5b5959;
+  margin: auto;
+  padding: 0;
+  border: 5px solid #5b5959;
+  width: 50%;
+  height: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+.titulo{
+  color: rgb(255, 255, 255);
+  margin-left: 30px;
+  margin-top: 5px;
+}
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 30px;
+  font-weight: bolder;
+  margin-right: 20px;
+}
+
+.texto,
+.number{
+  color: white;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 2px;
+  background-color: #cc1313;
+  color: rgb(255, 255, 255);
+}
+.modal-header2{
+  padding: 2px 2px;
+  background-color: #d2dc0d;
+  color: rgb(255, 255, 255);
+
+}
+
+.modal-body {padding: 50px 20px;}
+
+
+@media(max-width:1200px)
+{
+  .btn-modal{
+    margin-top: -250px;
+    margin-left: 0px;
+    width: 160px;
+  }
+}
+
+@media(max-width:650px)
+{
+  .btn-modal{
+    margin-top: -310px;
+    margin-left: 0px;
+    width: 120px; 
+    height: 130px;
+  }
+}
+
+@media(max-width:550px)
+{
+  .btn-modal{
+    margin-top: -370px;
+    margin-left: 0px;
+    width: 100px; 
+    height: 160px;
+  }
+}
+
+/*---------------------------------------------*/
+/*---------------------------------------------*/
+
+
+/*------------------------------------------------*/
+/*------------------------------------------------*/
