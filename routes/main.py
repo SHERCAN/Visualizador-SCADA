@@ -126,18 +126,17 @@ dataVisor = {}
 
 control = True
 
-# [{'name': 'GridsidevoltageL1-N', 'value': 0.0, 'register': 30, 'scale': 0.1,
-# 'write': False, 'write_type': None, 'write_range': None},
-# {'name': 'GridsidevoltageL2-N', 'value': 0.0, 'register': 31, 'scale': 0.1, 'write': False, 'write_t
-# ype': None, 'write_range': None}, {'name': 'GridsidevoltageL1-L2', 'value': 0.0, 'register': 32,
-# 'scale': 0.1, 'write': False, 'write_type': None, 'write_range': None},
-# {'name': 'VoltageatmiddlesideofrelayL1-L2', 'value': 0.0, 'register': 88,
-# 'scale': 0.1, 'write': False, 'write_type': None, 'write_range': None},
+[{"name": "GridsidevoltageL1-N", "value": 0.0, "register": 30, "scale": 0.1, "write": "", "write_type": 0, "write_range": ""},
+    {"name": "GridsidevoltageL2-N", "value": 0.0, "register": 31, "scale": 0.1, "write": "", "write_type": "", "write_range": ""}]
+#  {'name': 'GridsidevoltageL1-L2', 'value': 0.0, 'register': 32,'scale': 0.1, 'write': False, 'write_type': None, 'write_range': None},{'name': 'VoltageatmiddlesideofrelayL1-L2', 'value': 0.0, 'register': 88,'scale': 0.1, 'write': False, 'write_type': None, 'write_range': None}]
 
 
 @main.post('/addData')
-async def addDataPost(dataVisor: list):
+async def addDataPost(request: Request, dataVisor: list):
     # print(dataVisor)
+    print(request.headers.get("Date"))
+    dataVisor.append(
+        {'name': 'onlineData', 'value': request.headers.get("Date")})
     dataBase.sendData(dataVisor)
     if str(datetime.now().strftime("%S")) == str("00"):  # and control1:
         try:
@@ -153,7 +152,7 @@ async def addDataPost(dataVisor: list):
 
 
 @main.get('/addData')
-async def addData(request: Request):
+async def addDataGet(request: Request):
     return {'server': 'on'}
 
 clients = []

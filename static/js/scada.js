@@ -1,17 +1,22 @@
 const modal = document.querySelector(".container-modal");
 const carrusel = document.querySelector(".carrusel");
-const slides = document.querySelectorAll(".slide");
-
+const liElements = document.querySelectorAll("ul.slider li"); // Selecciona todos los elementos li de la lista ul
+var elemento;
 function mostrarModalGrid(element) {
-  console.log(element);
-  var elemento = element;
+  elemento = element;
+  const slide = document.querySelector(element);
+  // const slideUl = document.querySelector(element);
+  //   slide.style.opacity = 1;
   modal.style.display = "flex";
-  const slide = document.querySelectorAll("#slide1");
-  slide.style.opacity = 1;
 }
 
 function ocultarModal() {
   modal.style.display = "none";
+  const slide = document.querySelector(elemento);
+  //   slide.style.opacity = "";
+  //   liElements.forEach((li) => {
+  //     li.style.opacity = 0; // Establece la opacidad en 0
+  //   });
 }
 
 function anteriorSlide() {

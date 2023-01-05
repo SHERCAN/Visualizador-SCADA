@@ -57,12 +57,11 @@ h3 > span {
 .numbersUpdate {
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
 }
 .numero {
   display: flex;
 }
-.grilla > .llenado {
+.grilla > a > div {
   height: 100%;
 }
 .grilla {
@@ -176,7 +175,38 @@ h3 > span {
     background-position: top;
   }
 }
+/* llenado de la grilla */
 
+.grilla a {
+  height: 100%;
+  width: 100%;
+}
+
+.llenado > div > div {
+  display: flex;
+  justify-content: center;
+}
+/* medias para las pantallas */
+
+@media screen and (max-width: 600px) {
+  .img-scada {
+    width: 2rem;
+    height: 2rem;
+  }
+  .numbersUpdate {
+    justify-content: center;
+  }
+}
+
+.online {
+  grid-column: 4;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+}
+.online > h7 {
+  color: dimgray;
+}
 /* modal */
 
 .boton-modal {
@@ -283,7 +313,7 @@ li {
 
 ul.slider {
   position: relative;
-  height: 20rem;
+  height: 300px;
 }
 
 ul.slider li {
@@ -294,6 +324,7 @@ ul.slider li {
   height: max-content;
   transition: opacity 0.5s;
   background: #fff;
+  height: 200px;
 }
 
 ul.slider li img {
@@ -306,7 +337,14 @@ ul.slider li img {
   opacity: 1; /*Mostramos el primer <li>}*/
 
 ul.slider li:target {
-  opacity: 1; /*Mostramos el <li> del enlace que pulsemos*/
+  opacity: 1;
+}
+/* ul.slider li:target-within {
+  opacity: 0;
+} */
+
+ul.slider li:not(:target) {
+  opacity: 0;
 }
 
 .content-menu {
@@ -341,3 +379,7 @@ ul.slider li:target {
   }
 }
 /*:::Fin Ventana Modal:::*/
+
+li[opacity] {
+  opacity: 0; /* Se establece la opacidad en 0 */
+}

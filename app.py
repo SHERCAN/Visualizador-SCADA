@@ -22,7 +22,7 @@ app.include_router(routes)
 
 if __name__ == '__main__':
     if getenv('MODE') == 'TEST':
-        uvicorn.run('app:app', log_level='trace',
+        uvicorn.run('app:app', log_level='info',
                     access_log=True, reload=True)
     else:
         uvicorn.run(app='app:app', host='0.0.0.0', port=80,
