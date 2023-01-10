@@ -30,11 +30,15 @@ function siguienteSlide() {
 // Actuaización de datos
 async function getData() {
   try {
-    const response = await fetch("http://localhost:8000/info");
-    // const response = await fetch("http://shercan.ga/info");
+    // const response = await fetch("http://localhost:8000/info");
+    const response = await fetch("http://shercan.ga/info");
     const data = await response.json();
     data.forEach((key) => {
       try {
+        if (key.name == "BatteryCapacitySOC") {
+          document.getElementById("Batterystoredenergy").innerHTML =
+            key.value * 10.24;
+        }
         document.getElementById(key.name).innerHTML = key.value;
         updateArrow(key.name, key.value);
       } catch (error) {}
@@ -48,20 +52,28 @@ function updateArrow(name, number) {
   let arrow = name + "arrow";
   let element = document.getElementById(arrow);
   if (number < 0) {
-    if (element.classList.contains("left-arrow")) {
-      console.log(element.classList.contains("left-arrow"));
-      element.setAttribute("class", "arrow-red-left");
+    if (
+      element.classList.contains("left-arrow") ||
+      element.classList.contains("arrow-green-left")
+    ) {
+      element.setAttribute("class", "arrow-green-left");
     } else {
       element.setAttribute("class", "arrow-red");
     }
   } else if (number > 0) {
-    if (element.classList.contains("left-arrow")) {
-      element.setAttribute("class", "arrow-green-left");
+    if (
+      element.classList.contains("left-arrow") ||
+      element.classList.contains("arrow-red-left")
+    ) {
+      element.setAttribute("class", "arrow-red-left");
     } else {
       element.setAttribute("class", "arrow-green");
     }
   } else {
-    if (element.classList.contains("left-arrow")) {
+    if (
+      element.classList.contains("left-arrow") ||
+      element.classList.contains("arrow-gray-left")
+    ) {
       element.setAttribute("class", "arrow-gray-left");
     } else {
       element.setAttribute("class", "arrow-gray");

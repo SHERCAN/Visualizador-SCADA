@@ -65,6 +65,9 @@
             <div class="online">
                 <h7>Last update:</h7>
                 <h7 id="onlineData">2022-01-05-10:33</h7>
+                <div>
+                    <img src="{{ url_for('static', path='/img/storz.png') }}" alt="Storz Power">
+                </div>
             </div>
             <div class="anim1"></div>
             <div class="grilla-item2 grilla" id="myBtn">
@@ -168,7 +171,7 @@
                                 <div><span>&nbsp;W</span></div>
                             </div>
                             <div>
-                                <h7 class="mb-1 text-center text-primary" id="BatterycapacitySOC">-</h7>
+                                <h7 class="mb-1 text-center text-primary" id="BatteryCapacitySOC">-</h7>
                                 <div> <span>&nbsp;%</span></div>
                             </div>
                             <div>
@@ -180,9 +183,9 @@
                                 <div><span>&nbsp;V</span></div>
                             </div>
                             <div>
-                                <div><span>Disp&nbsp;</span></div>
-                                <h7 class="mb-1 text-center text-primary" id="nosecomosellama">-</h7>
-                                <div><span>&nbsp;kW</span></div>
+                                <div><span>Avai&nbsp;</span></div>
+                                <h7 class="mb-1 text-center text-primary" id="Batterystoredenergy">-</h7>
+                                <div><span>&nbsp;kWh</span></div>
                             </div>
                         </div>
                     </div>
@@ -415,7 +418,7 @@
                                 </div>
                                 <div class="numero">
                                     <h6>SOC:&nbsp;</h6>
-                                    <h6 id="BatterycapacitySOC">-</h6>
+                                    <h6 id="Batterystoredenergy">-</h6>
                                     <h6>
                                         <span>&nbsp;%</span>
                                     </h6>
