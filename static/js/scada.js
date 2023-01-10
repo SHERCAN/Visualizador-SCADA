@@ -7,7 +7,7 @@ function mostrarModalGrid(element) {
   const slide = document.querySelector(element);
   // const slideUl = document.querySelector(element);
   //   slide.style.opacity = 1;
-  modal.style.display = "flex";
+  modal.style.display = "block";
 }
 
 function ocultarModal() {
@@ -27,5 +27,44 @@ function siguienteSlide() {
   carrusel.style.left = "-100%";
 }
 
-// Muestra el modal al hacer clic en un botón o enlace
-// document.querySelector(".boton-modal").addEventListener("click", mostrarModal);
+// Actuaización de datos
+async function getData() {
+  try {
+    const response = await fetch("http://localhost:8000/info");
+    // const response = await fetch("http://shercan.ga/info");
+    const data = await response.json();
+    data.forEach((key) => {
+      try {
+        document.getElementById(key.name).innerHTML = key.value;
+        updateArrow(key.name, key.value);
+      } catch (error) {}
+    });
+  } catch (error) {}
+}
+setInterval(getData, 250);
+
+// flechas de visualización
+function updateArrow(name, number) {
+  let arrow = name + "arrow";
+  let element = document.getElementById(arrow);
+  if (number < 0) {
+    if (element.classList.contains("left-arrow")) {
+      console.log(element.classList.contains("left-arrow"));
+      element.setAttribute("class", "arrow-red-left");
+    } else {
+      element.setAttribute("class", "arrow-red");
+    }
+  } else if (number > 0) {
+    if (element.classList.contains("left-arrow")) {
+      element.setAttribute("class", "arrow-green-left");
+    } else {
+      element.setAttribute("class", "arrow-green");
+    }
+  } else {
+    if (element.classList.contains("left-arrow")) {
+      element.setAttribute("class", "arrow-gray-left");
+    } else {
+      element.setAttribute("class", "arrow-gray");
+    }
+  }
+}

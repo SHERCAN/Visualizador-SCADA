@@ -134,7 +134,7 @@ control = True
 @main.post('/addData')
 async def addDataPost(request: Request, dataVisor: list):
     # print(dataVisor)
-    print(request.headers.get("Date"))
+    # print(request.headers.get("Date"))
     dataVisor.append(
         {'name': 'onlineData', 'value': request.headers.get("Date")})
     dataBase.sendData(dataVisor)

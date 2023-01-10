@@ -11,6 +11,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  column-gap: 0.4rem;
+  row-gap: 0.4rem;
 }
 /* cada item dentro de la grilla */
 .grilla-visual .grilla-item1 {
@@ -49,6 +51,26 @@
   position: relative;
   z-index: 1;
 }
+
+.grilla-item1 > a > div {
+  border: 1px solid red;
+}
+
+.grilla-item2 > a > div {
+  border: 1px solid yellow;
+}
+.grilla-item3 > a > div {
+  border: 1px solid lightgray;
+}
+.grilla-item4 > a > div {
+  border: 1px solid green;
+}
+.grilla-item5 > a > div {
+  border: 1px solid lightgray;
+}
+.grilla-item6 > a > div {
+  border: 1px solid red;
+}
 /* span de los h3 para las unidades */
 h3 > span {
   margin-left: 10px;
@@ -57,6 +79,17 @@ h3 > span {
 .numbersUpdate {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.numbersUpdate > div > div {
+  color: #6c7293;
+  white-space: nowrap;
+}
+
+.numbersUpdate > div {
+  justify-content: flex-end;
+  display: flex;
 }
 .numero {
   display: flex;
@@ -182,9 +215,19 @@ h3 > span {
   width: 100%;
 }
 
-.llenado > div > div {
+.llenado {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.llenado > .col > .row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+h7 {
+  background-color: #000000;
 }
 /* medias para las pantallas */
 
@@ -195,6 +238,9 @@ h3 > span {
   }
   .numbersUpdate {
     justify-content: center;
+  }
+  .llenado {
+    flex-direction: column;
   }
 }
 
@@ -270,8 +316,8 @@ h3 > span {
 
 .content-modal .btn-cerrar label {
   padding: 7px 10px;
-  background-color: #5488a3;
-  color: #fff;
+  background-color: #16eb3d;
+  color: rgb(0, 0, 0);
   border-radius: 4px;
   cursor: pointer;
   transition: all 300ms ease;
@@ -382,4 +428,71 @@ ul.slider li:not(:target) {
 
 li[opacity] {
   opacity: 0; /* Se establece la opacidad en 0 */
+}
+/* flechas para que se vea el flujo de energía derecha izquierda*/
+.arrow-red-left::before {
+  content: "";
+  border-color: transparent transparent transparent red;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-green-left::before {
+  content: "";
+  border-color: transparent green transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-gray-left::before {
+  content: "";
+  border-color: transparent gray transparent gray;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+/* flechas de flujo arriba abajo */
+.arrow-red::before {
+  content: "";
+  border-color: red transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-green::before {
+  content: "";
+  border-color: transparent transparent green transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-gray::before {
+  content: "";
+  border-color: gray transparent gray transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
 }

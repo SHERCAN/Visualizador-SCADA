@@ -14,20 +14,50 @@
             <div class="grilla-item1 grilla" id="botoncito">
                 <a href="#slide1">
                     <div class="bg-secondary rounded h-33 p-2 llenado" onclick="mostrarModalGrid('#slide1')">
-                        <div class="row">
-                            <div class="col">
+                        <div class="col">
+                            <div class="row">
                                 <img src="{{ url_for('static', path='img/gridLogo2.png') }}" class="img-scada"
                                     alt="Grid icon">
                             </div>
-                            <div class="col">
+                            <div class="row">
                                 <h6 class="mb-4">Grid</h6>
                             </div>
+                            <div id="TotalpowerofgridsideL1-L2arrow" class="left-arrow"></div>
                         </div>
                         <div class="numbersUpdate">
-                            <h3 class="text-center text-primary" id="TotalpowerofgridsideL1-L2">-</h3>
-                            <h3 class="text-center text-primary">
-                                <span> W</span>
-                            </h3>
+                            <div>
+                                <div>
+                                    <span>T&nbsp;</span>
+                                </div>
+                                <h7 class="text-center text-primary" id="TotalpowerofgridsideL1-L2">150</h7>
+                                <div>
+                                    <span>&nbsp;W</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div><span>L1-N&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="GridsidevoltageL1-N">150</h7>
+                                <div>
+                                    <span>&nbsp;V</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div><span>L2-N&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="GridsidevoltageL2-N">150</h7>
+                                <div><span>&nbsp;V</span></div>
+                            </div>
+                            <div>
+                                <div><span>L1&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="GridsideL1power">150</h7>
+                                <div> <span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>L2&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="GridsideL2power">150</h7>
+                                <div>
+                                    <span>&nbsp;W</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -40,19 +70,31 @@
             <div class="grilla-item2 grilla" id="myBtn">
                 <a href="#slide2">
                     <div class="bg-secondary rounded h-33 p-2 llenado" onclick="mostrarModalGrid('#slide2');">
-                        <div class="row">
-                            <div class="col">
+                        <div class="col">
+                            <div class="row">
                                 <img src="{{ url_for('static', path='img/pv.png') }}" class="img-scada" alt="pv icon">
                             </div>
-                            <div class="col">
+                            <div class="row">
                                 <h6 class="mb-4">PV</h6>
                             </div>
+                            <div id="PVinputpowerarrow"></div>
                         </div>
                         <div class="numbersUpdate">
-                            <h3 class="text-center text-primary" id="PV1inputpower">-</h3>
-                            <h3 class="text-center text-primary">
-                                <span> W</span>
-                            </h3>
+                            <div>
+                                <div><span>T&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="PVinputpower">-</h7>
+                                <div> <span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>P1&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="PV1inputpower">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>P2&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="PV2inputpower">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -61,20 +103,46 @@
             <div class="grilla-item3 grilla">
                 <a href='#slide3'>
                     <div class="bg-secondary rounded h-33 p-2 llenado" onclick="mostrarModalGrid('#slide3');">
-                        <div class="row">
-                            <div class="col">
+                        <div class="col">
+                            <div class="row">
                                 <img src="{{ url_for('static', path='img/inverter.png') }}" class="img-scada"
                                     alt="Inverter icon">
                             </div>
-                            <div class="col">
+                            <div class="row">
                                 <h6 class="mb-4">Inverter</h6>
                             </div>
                         </div>
                         <div class="numbersUpdate">
-                            <h3 class="text-center text-primary" id="InverteroutputTotalpower">-</h3>
-                            <h3 class="text-center text-primary">
-                                <span> W</span>
-                            </h3>
+                            <div>
+                                <div><span>P2&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="InverteroutputTotalpower">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>L1-N&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="InverteroutputvoltageL1-N">-</h7>
+                                <div><span>&nbsp;V</span></div>
+                            </div>
+                            <div>
+                                <div><span>L2-N&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="InverteroutputvoltageL2-N">-</h7>
+                                <div><span>&nbsp;V</span></div>
+                            </div>
+                            <div>
+                                <div><span>F&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="Inverteroutputfrequency">-</h7>
+                                <div><span>&nbsp;Hz</span></div>
+                            </div>
+                            <div>
+                                <div><span>L1&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="InverteroutputsL1power">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>L2&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="InverteroutputsL2power">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -84,20 +152,38 @@
             <div class="grilla-item4 grilla">
                 <a href='#slide4'>
                     <div class="bg-secondary rounded h-33 p-2 llenado" onclick="mostrarModalGrid('#slide4');">
-                        <div class="row">
-                            <div class="col">
+                        <div class="col">
+                            <div class="row">
                                 <img src="{{ url_for('static', path='img/battery.png') }}" class="img-scada"
                                     alt="Battery icon">
                             </div>
-                            <div class="col">
+                            <div class="row">
                                 <h6 class="mb-4">Battery</h6>
                             </div>
+                            <div id="Batteryoutputpowerarrow"></div>
                         </div>
                         <div class="numbersUpdate">
-                            <h3 class="mb-1 text-center text-primary" id="Batteryoutputpower">-</h3>
-                            <h3 class="mb-1 text-center text-primary">
-                                <span> W</span>
-                            </h3>
+                            <div>
+                                <h7 class="mb-1 text-center text-primary" id="Batteryoutputpower">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <h7 class="mb-1 text-center text-primary" id="BatterycapacitySOC">-</h7>
+                                <div> <span>&nbsp;%</span></div>
+                            </div>
+                            <div>
+                                <h7 class="mb-1 text-center text-primary" id="Batterytemperature">-</h7>
+                                <div> <span>&nbsp;°F</span></div>
+                            </div>
+                            <div>
+                                <h7 class="mb-1 text-center text-primary" id="Batteryvoltage">-</h7>
+                                <div><span>&nbsp;V</span></div>
+                            </div>
+                            <div>
+                                <div><span>Disp&nbsp;</span></div>
+                                <h7 class="mb-1 text-center text-primary" id="nosecomosellama">-</h7>
+                                <div><span>&nbsp;kW</span></div>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -105,7 +191,15 @@
             <div class="grilla-item5 grilla">
                 <a href='#slide5'>
                     <div class="bg-secondary rounded h-33 p-2 llenado" onclick="mostrarModalGrid('#slide5');">
-                        <h6 class="mb-4">Smart panel</h6>
+                        <div class="col">
+                            <div class="row">
+                                <img src="{{ url_for('static', path='img/smart.png') }}" class="img-scada"
+                                    alt="SmartP icon">
+                            </div>
+                            <div class="row">
+                                <h6 class="mb-4">Smart panel</h6>
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -113,12 +207,47 @@
             <div class="grilla-item6 grilla">
                 <a href='#slide6'>
                     <div class="bg-secondary rounded h-33 p-2 llenado" onclick="mostrarModalGrid('#slide6');">
-                        <h6 class="mb-4">Load</h6>
+                        <div class="col">
+                            <div class="row">
+                                <img src="{{ url_for('static', path='img/load.png') }}" class="img-scada"
+                                    alt="Load icon">
+                            </div>
+                            <div class="row">
+                                <h6 class="mb-4">Load</h6>
+                            </div>
+                            <div id="LoadsideTotalpowerarrow" class="left-arrow"></div>
+                        </div>
                         <div class="numbersUpdate">
-                            <h3 class="text-center text-primary" id="LoadsideTotalpower">-</h3>
-                            <h3 class="text-center text-primary">
-                                <span> W</span>
-                            </h3>
+                            <div>
+                                <div><span>T&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="LoadsideTotalpower">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>L1&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="LoadsideL1power">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>L2&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="LoadsideL2power">-</h7>
+                                <div><span>&nbsp;W</span></div>
+                            </div>
+                            <div>
+                                <div><span>L1-N&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="nenene">-</h7>
+                                <div><span>&nbsp;V</span></div>
+                            </div>
+                            <div>
+                                <div><span>L2-N&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="nenene">-</h7>
+                                <div><span>&nbsp;V</span></div>
+                            </div>
+                            <div>
+                                <div><span>L&nbsp;</span></div>
+                                <h7 class="text-center text-primary" id="Loadfrequency">-</h7>
+                                <div><span>&nbsp;Hz</span></div>
+                            </div>
                         </div>
                     </div>
                 </a>
@@ -153,7 +282,7 @@
                                     </h6>
                                 </div>
                                 <div class="numero">
-                                    <h6>Voltage L1-L2:&nbsp;</h6>
+                                    <h6>Voltage L1-L2:</h6>
                                     <h6 id="GridsidevoltageL1-L2">-</h6>
                                     <h6>
                                         <span>&nbsp;V</span>
@@ -373,26 +502,14 @@
                         </li>
                     </ul>
                     <div class="content-menu">
-                        <ul class="menu">
-                            <li>
-                                <a href="#slide1">Grid</a>
-                            </li>
-                            <li>
-                                <a href="#slide2">Pv</a>
-                            </li>
-                            <li>
-                                <a href="#slide3">Inverter</a>
-                            </li>
-                            <li>
-                                <a href="#slide4">Battery</a>
-                            </li>
-                            <li>
-                                <a href="#slide5">Smart panel</a>
-                            </li>
-                            <li>
-                                <a href="#slide6">Load</a>
-                            </li>
-                        </ul>
+                        <select class="btn dropdown-toggle bs-placeholder btn-light" onchange="location = this.value;">
+                            <option value="#slide1">Grid</option>
+                            <option value="#slide2">Pv</option>
+                            <option value="#slide3">Inverter</option>
+                            <option value="#slide4">Battery</option>
+                            <option value="#slide5">Smart panel</option>
+                            <option value="#slide6">Load</option>
+                        </select>
                         <div class="btn-cerrar" onclick="ocultarModal();">
                             <label for="btn-modal">Cerrar</label>
                         </div>
@@ -403,26 +520,6 @@
             <label for="btn-modal" class="cerrar-modal"></label>
         </div>
     </div>
-    <script>
-        async function getData() {
-            try {
-                // const response = await fetch('http://localhost:8000/info');
-                const response = await fetch('http://shercan.ga/info');
-                const data = await response.json();
-                data.forEach((key) => {
-                    try {
-                        document.getElementById(key.name).innerHTML = key.value;
-                    }
-                    catch (error) {
-                    }
-                });
-            }
-            catch (error) {
-
-            }
-        }
-        setInterval(getData, 250);
-    </script>
     <script src="{{ url_for('static', path='js/scada.js') }}"></script>
     <!-- Recent Sales End -->
     {% include 'select.html' %}
