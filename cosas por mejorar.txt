@@ -1,0 +1,13 @@
+Poner las unidades y el nombre en gris solo los datos verdes
+Cuando esta en otro modo se ve diferente al movil vertical horizontal 
+Cómo se ve en el inverter
+la hora tratar de actualizarla
+Revisar la base de datos para poder sacar y envíar datos.
+El valor verde dentro de un recuadro negro
+
+
+
+
+
+
+
