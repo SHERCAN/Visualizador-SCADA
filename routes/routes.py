@@ -38,7 +38,6 @@ async def main(request: Request):
     data.pop('_id')
     for k, _ in data.items():
         data[k]['All'] = 'All'
-    # print(data)
     clientes = dataBase.conn['Clients'].find()
     states = []
     cities = []

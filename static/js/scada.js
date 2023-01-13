@@ -26,18 +26,56 @@ function anteriorSlide() {
 function siguienteSlide() {
   carrusel.style.left = "-100%";
 }
+const formatter = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
 
+function sliceData(data) {
+  let x = data.toString(2).padStart(16, "0");
+  let value = [
+    parseInt(x.slice(1, 8), 2).toString().padStart(2, "0"),
+    parseInt(x.slice(9, 16), 2).toString().padStart(2, "0"),
+  ];
+  return value;
+}
 // Actuaización de datos
 async function getData() {
   try {
     // const response = await fetch("http://localhost:8000/info");
-    const response = await fetch("http://shercan.ga/info");
+    const response = await fetch(window.location.origin + "/info");
     const data = await response.json();
+    var year_month;
+    var day_hour;
+    var minute_seconds;
     data.forEach((key) => {
       try {
+        if (key.name == "YearANDMonth") {
+          year_month = sliceData(key.value);
+        }
+        if (key.name == "DayANDHour") {
+          day_hour = sliceData(key.value);
+        }
+        if (key.name == "MinuteANDSecond") {
+          minute_seconds = sliceData(key.value);
+          let datos =
+            "20" +
+            year_month[0] +
+            "-" +
+            year_month[1] +
+            "-" +
+            day_hour[0] +
+            "-" +
+            day_hour[1] +
+            ":" +
+            minute_seconds[0] +
+            ":" +
+            minute_seconds[1];
+          document.getElementById("onlineData").innerHTML = datos;
+        }
         if (key.name == "BatteryCapacitySOC") {
           document.getElementById("Batterystoredenergy").innerHTML =
-            key.value * 10.24;
+            formatter.format(key.value * 0.1024);
         }
         document.getElementById(key.name).innerHTML = key.value;
         updateArrow(key.name, key.value);
@@ -58,7 +96,7 @@ function updateArrow(name, number) {
     ) {
       element.setAttribute("class", "arrow-green-left");
     } else {
-      element.setAttribute("class", "arrow-red");
+      element.setAttribute("class", "arrow-green");
     }
   } else if (number > 0) {
     if (
@@ -67,7 +105,7 @@ function updateArrow(name, number) {
     ) {
       element.setAttribute("class", "arrow-red-left");
     } else {
-      element.setAttribute("class", "arrow-green");
+      element.setAttribute("class", "arrow-red");
     }
   } else {
     if (

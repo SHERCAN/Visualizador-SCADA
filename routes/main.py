@@ -135,8 +135,6 @@ control = True
 async def addDataPost(request: Request, dataVisor: list):
     # print(dataVisor)
     # print(request.headers.get("Date"))
-    dataVisor.append(
-        {'name': 'onlineData', 'value': request.headers.get("Date")})
     dataBase.sendData(dataVisor)
     if str(datetime.now().strftime("%S")) == str("00"):  # and control1:
         try:
