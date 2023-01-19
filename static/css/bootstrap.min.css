@@ -237,7 +237,7 @@ sup {
 }
 
 a {
-  color: #16eb3d;
+  color: #00adeb;
   text-decoration: none;
 }
 
@@ -3094,8 +3094,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
   color: rgb(0, 0, 0);
-  background-color: #16eb3d;
-  border-color: #16eb3d;
+  background-color: #00adeb;
+  border-color: #00adeb;
 }
 
 .btn-primary:hover {
@@ -3107,9 +3107,9 @@ fieldset:disabled .btn {
 .btn-check:focus + .btn-primary,
 .btn-primary:focus {
   color: rgb(0, 0, 0);
-  background-color: #15ff40;
-  border-color: #15ff40;
-  box-shadow: 0 0 0 0.25rem rgba(238, 57, 57, 0.5);
+  background-color: #00acebd0;
+  border-color: #00adebd0;
+  box-shadow: 0 0 0 0.25rem rgba(57, 141, 238, 0.5);
 }
 
 .btn-check:checked + .btn-primary,
@@ -8286,7 +8286,7 @@ fieldset:disabled .btn {
 }
 
 .text-primary {
-  color: #16eb3d !important;
+  color: #00adeb !important;
 }
 
 .text-secondary {
