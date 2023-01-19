@@ -80,27 +80,39 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-secondary text-center rounded p-4">
             <form method="post" action="/addclient">
-                <div class="border border-light padding rounded p-2 mb-2">
+                <div class="border border-light padding rounded p-2 mb-2 justify-content-end">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                         <h6 class="mb-0">Places</h6>
                     </div>
                     <div class="d-flex flex-wrap mb-2">
-                        <div class="d-flex p-2 align-items-center flex-wrap">
+                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
                             <div class="align-items-center p-1"> State</div>
                             <div>
                                 <input type="text" name="state" placeholder="State" class="form-control">
                             </div>
                         </div>
-                        <div class="d-flex p-2 align-items-center flex-wrap">
+                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
                             <div class="align-items-center p-1"> City</div>
                             <div>
                                 <input type="text" name="city" placeholder="City" class="form-control">
                             </div>
                         </div>
-                        <div class="d-flex p-2 align-items-center flex-wrap">
+                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
                             <div class="align-items-center p-1"> Client</div>
                             <div>
                                 <input type="text" name="client" placeholder="Client identifier" class="form-control">
+                            </div>
+                        </div>
+                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                            <div class="align-items-center p-1">Electric company</div>
+                            <div>
+                                <input type="text" name="electricco" placeholder="Electric co" class="form-control">
+                            </div>
+                        </div>
+                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                            <div class="align-items-center p-1">Rate Name</div>
+                            <div>
+                                <input type="text" name="ratename" placeholder="Rate Name" class="form-control">
                             </div>
                         </div>
                     </div>

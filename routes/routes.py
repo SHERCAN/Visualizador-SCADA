@@ -33,7 +33,7 @@ templates = Jinja2Templates(directory='templates')
 
 
 @routes.get('/index', response_class=HTMLResponse)
-async def main(request: Request):
+async def mainindex(request: Request):
     data = dataBase.readDataData()[0]
     data.pop('_id')
     for k, _ in data.items():
@@ -53,20 +53,20 @@ async def main(request: Request):
 
 
 @routes.get('/', response_class=HTMLResponse)
-async def main():
+async def mainToIndex():
     response = RedirectResponse('/index')
     return response
 
 
 @routes.get('/addclient', response_class=HTMLResponse)
-async def main(request: Request):
+async def mainAddClientGet(request: Request):
     context = {'request': request}
     response = templates.TemplateResponse('addclient.html', context=context)
     return response
 
 
 @routes.post('/addclient', response_class=HTMLResponse)
-async def main(state: str = Form(), city: str = Form(), client: str = Form(), request: Request = None):
+async def mainAddClientPost(state: str = Form(), city: str = Form(), client: str = Form(), request: Request = None):
     context = {'request': request}
     dataBase.sendClient({'state': state, 'city': city, 'client': client})
     response = templates.TemplateResponse('addclient.html', context=context)
@@ -74,7 +74,7 @@ async def main(state: str = Form(), city: str = Form(), client: str = Form(), re
 
 
 @routes.get('/token', response_class=HTMLResponse)
-async def main(request: Request):
+async def mainTokenGet(request: Request):
     context = {'request': request}
     response = templates.TemplateResponse('token.html', context=context)
     return response
@@ -151,7 +151,7 @@ async def main(request: Request):
 
 
 @ routes.get('/scada', response_class=HTMLResponse)
-async def scada(request: Request):
+async def scadaGet(request: Request):
     context = {'request': request}
     response = templates.TemplateResponse('scada.html', context=context)
     return response
@@ -161,3 +161,10 @@ async def scada(request: Request):
 async def addData(request: Request):
     return dataBase.data
     # return {'data': 'datos de la base'}
+
+
+@ routes.get('/saving', response_class=HTMLResponse)
+async def scada(request: Request):
+    context = {'request': request}
+    response = templates.TemplateResponse('saving.html', context=context)
+    return response

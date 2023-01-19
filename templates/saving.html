@@ -1,0 +1,16 @@
+{% include 'head.html' %}
+{% include 'spinner.html' %}
+{% include 'sidebar.html' %}
+
+<!-- Content Start -->
+<div class="content">
+    {% include 'navbar.html' %}
+    <link rel="stylesheet" href="{{ url_for('static', path='css/saving.css') }}">
+    <!-- ----------------------------- -->
+    <div class="container-fluid pt-4 px-4">
+        <img src="{{ url_for('static', path='img/scadapr.png') }}" class='img-scada' alt="Img Scada">
+
+    </div>
+    <!-- Recent Sales End -->
+    {% include 'select.html' %}
+    {% include 'footer.html' %}
