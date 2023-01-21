@@ -24,6 +24,7 @@ from bson.objectid import ObjectId
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
+from requests import get
 load_dotenv()
 
 routes = APIRouter(route_class=VerifyTokenRoute)
@@ -54,7 +55,7 @@ async def mainindex(request: Request):
 
 @routes.get('/', response_class=HTMLResponse)
 async def mainToIndex():
-    response = RedirectResponse('/index')
+    response = RedirectResponse('/saving')
     return response
 
 
@@ -66,9 +67,13 @@ async def mainAddClientGet(request: Request):
 
 
 @routes.post('/addclient', response_class=HTMLResponse)
-async def mainAddClientPost(state: str = Form(), city: str = Form(), client: str = Form(), request: Request = None):
-    context = {'request': request}
-    dataBase.sendClient({'state': state, 'city': city, 'client': client})
+async def mainAddClientPost(state: str = Form(), city: str = Form(),
+                            zipcode: str = Form(), client: str = Form(),
+                            electricCo: str = Form(), sector: str = Form(), ratename: str = Form(),
+                            request: Request = None):
+    context = {'request': request, 'upload': True}
+    print({'state': state, 'city': city, 'client': client, 'zipcode': zipcode,
+          'electricCo': electricCo, 'sector': sector, 'ratename': ratename})
     response = templates.TemplateResponse('addclient.html', context=context)
     return response
 
@@ -109,7 +114,7 @@ async def get_registers(request: Request):
         fecha_fin = '2022-12-03'
     else:
         fecha_fin = datos.get('finaldate').strip()
-    #print(fecha_fin, fecha_inicio)
+    # print(fecha_fin, fecha_inicio)
     timestamp_inicio = int(datetime.strptime(
         fecha_inicio, "%Y-%m-%d").timestamp())
     timestamp_fin = int(datetime.strptime(fecha_fin, "%Y-%m-%d").timestamp())
@@ -163,8 +168,29 @@ async def addData(request: Request):
     # return {'data': 'datos de la base'}
 
 
-@ routes.get('/saving', response_class=HTMLResponse)
+@routes.get('/saving', response_class=HTMLResponse)
 async def scada(request: Request):
     context = {'request': request}
     response = templates.TemplateResponse('saving.html', context=context)
     return response
+
+
+@routes.get('/companyrate', response_class=JSONResponse)
+async def companiRates(value: str = ''):
+    print(value)
+    value = value.replace("%26", "&")
+    try:
+        response = get(value)
+        listCo = []
+        if response.url.split('/')[2] == 'api.openei.org':
+            rangoCo = response.json()['items']
+            for i in rangoCo:
+                if i.get('enddate') == None:
+                    listCo.append(i['name'])
+        elif response.url.split('/')[2] == 'openei.org':
+            rangoCo = json.loads(response.content.decode())['sfautocomplete']
+            for i in rangoCo:
+                listCo.append(i['title'])
+    except:
+        listCo = {'data': 'error'}
+    return listCo

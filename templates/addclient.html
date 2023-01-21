@@ -85,36 +85,53 @@
                         <h6 class="mb-0">Places</h6>
                     </div>
                     <div class="d-flex flex-wrap mb-2">
-                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column align-bottom">
                             <div class="align-items-center p-1"> State</div>
                             <div>
-                                <input type="text" name="state" placeholder="State" class="form-control">
+                                <input type="text" name="state" id="state" placeholder="Arizona" class="form-control">
                             </div>
                         </div>
-                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column">
                             <div class="align-items-center p-1"> City</div>
                             <div>
-                                <input type="text" name="city" placeholder="City" class="form-control">
+                                <input type="text" name="city" id="city" placeholder="Scottsdale" class="form-control"
+                                    disabled>
                             </div>
                         </div>
-                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column">
+                            <div class="align-items-center p-1">Zip Code</div>
+                            <div>
+                                <input type="text" name="zipcode" placeholder="61008" class="form-control">
+                            </div>
+                        </div>
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column">
                             <div class="align-items-center p-1"> Client</div>
                             <div>
-                                <input type="text" name="client" placeholder="Client identifier" class="form-control">
+                                <input type="text" name="client" placeholder="CL-AR-123" class="form-control">
                             </div>
                         </div>
-                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column">
                             <div class="align-items-center p-1">Electric company</div>
                             <div>
-                                <input type="text" name="electricco" placeholder="Electric co" class="form-control">
+                                <input type="text" name="electricCo" id="electricCo"
+                                    placeholder="Lost River Electric Coop Inc" class="form-control">
                             </div>
                         </div>
-                        <div class="d-flex p-2 align-items-center flex-wrap flex-column">
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column">
+                            <div class="align-items-center p-1">Sector</div>
+                            <div>
+                                <input type="text" name="sector" id="sector" placeholder="Residential"
+                                    class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="d-flex p-2 align-items-start flex-wrap flex-column">
                             <div class="align-items-center p-1">Rate Name</div>
                             <div>
-                                <input type="text" name="ratename" placeholder="Rate Name" class="form-control">
+                                <input type="text" name="ratename" id="ratename" placeholder="Residential service"
+                                    class="form-control" disabled>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div>
@@ -328,5 +345,6 @@
         });
 
     </script> -->
+    <script src="{{ url_for('static', path='js/find_util.js') }}"></script>
     {% include 'select.html' %}
     {% include 'footer.html' %}
