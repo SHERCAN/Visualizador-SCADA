@@ -176,18 +176,19 @@ async def scada(request: Request):
 
 
 @routes.get('/companyrate', response_class=JSONResponse)
-async def companiRates(value: str = ''):
-    print(value)
-    value = value.replace("%26", "&")
+async def companiRates(value: str = '', sector: str = '', company: str = '', substr: str = ''):
     try:
-        response = get(value)
         listCo = []
-        if response.url.split('/')[2] == 'api.openei.org':
+        if value == 'rates':
+            response = get("https://api.openei.org/utility_rates?version=latest&format=json&api_key=XVKe43UvrJ0mduASGIthdBV2yCvzfdAjmaaW6cuZ&orderby=enddate&limit=30",
+                           params={'sector': sector, 'ratesforutility': company})
             rangoCo = response.json()['items']
             for i in rangoCo:
                 if i.get('enddate') == None:
                     listCo.append(i['name'])
-        elif response.url.split('/')[2] == 'openei.org':
+        elif value == 'companies':
+            response = get("https://openei.org/w/api.php?action=sfautocomplete&limit=500&format=json&category=EIA%20Utility%20Companies%20and%20Aliases" +
+                           "&substr=" + substr)
             rangoCo = json.loads(response.content.decode())['sfautocomplete']
             for i in rangoCo:
                 listCo.append(i['title'])
