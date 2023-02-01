@@ -158,7 +158,11 @@ svg {
     opacity: 0.3;
   }
 }
+/* movement sending inverter to load */
 .inverter2load {
+  opacity: 0;
+}
+.inverter2loadAni {
   opacity: 0;
   animation: loadMove 2s linear infinite;
 }

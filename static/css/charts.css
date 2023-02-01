@@ -18,10 +18,9 @@ html {
 
 .temporalidades {
   display: flex;
-  justify-content: flex-start;
-  height: 1.5rem;
-  width: 50%;
-  margin-left: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto 1rem;
 }
 
 .temporalidades div:hover {
@@ -53,4 +52,13 @@ html {
   background-color: var(--bgcolor);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* date form */
+.date {
+  background: #00000000;
+  color: #00adeb;
+}
+.form-control {
+  width: 80%;
 }

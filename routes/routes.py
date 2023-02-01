@@ -193,14 +193,18 @@ async def scadacopy(request: Request):
 
 
 @routes.get('/db', response_class=JSONResponse)
-async def db(key: str, temporary: str):
-    try:
-        responseSql = dataSql.getQuery(
-            key=key, temporary=temporary)
-        if len(responseSql[0]) == 0:
-            return [[0], [0]]
-        else:
-            return responseSql
-    except Exception as e:
-        print("except", e)
-        return {'data': 'error'}
+async def db(key: str, temporary: str, date: str = ""):
+    if date == "":
+        dateI = datetime.now()
+    else:
+        dateI = datetime.strptime(date, '%Y-%m-%d')
+    # try:
+    responseSql = dataSql.getQuery(
+        key=key, temporary=temporary, date=dateI)
+    if len(responseSql[0]) == 0:
+        return [[0], [0]]
+    else:
+        return responseSql
+    # except Exception as e:
+    #     print("except", e)
+    #     return {'data': 'error'}

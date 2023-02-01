@@ -82,6 +82,15 @@ async function getData() {
           let pv2invert = document.getElementById("pv2inverter");
           pv2invert.className.baseVal = key.value > 0 ? "pv2inverter" : "";
         }
+        if (key.name == "LoadsideTotalpower") {
+          let invert2load = document.getElementsByClassName("inverter2load");
+          for (let i = 0; i < invert2load.length; i++) {
+            invert2load[i].className.baseVal =
+              key.value > 0
+                ? "inverter2loadAni inverter2load"
+                : "inverter2load";
+          }
+        }
         let listPower = [
           "Loadfrequency",
           "GridsidevoltageL1-N",

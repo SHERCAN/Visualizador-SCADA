@@ -117,15 +117,12 @@ const config = {
           generateLabels: (chart) => {
             let visibility = [];
             for (let i = 0; i < chart.data.datasets.length; i++) {
-              // console.log(chart.isDatasetVisible(i));
               if (chart.isDatasetVisible(i) === true) {
-                // console.log(i);
                 visibility.push("#00adeb");
               } else {
                 visibility.push("#D6D6D680");
               }
             }
-            // console.log(visibility);
             return chart.data.datasets.map((dataset, index) => ({
               text: dataset.label,
               fillStyle: dataset.backgroundColor,
@@ -174,7 +171,6 @@ const config = {
         ticks: {
           callback: (value, index, ticks) => {
             const date = new Date(value);
-            // console.log(ticks);
             let timeReturn = new Intl.DateTimeFormat("en-US", {
               day: "2-digit",
               month: "short",
@@ -204,11 +200,15 @@ function getSql(
   key = keyGlobal,
   index = indexGlobal
 ) {
+  let dateInit = $("#dateChart")[0].value;
   temporaryGlobal = temporary;
   keyGlobal = key;
   indexGlobal = index;
   var url =
     window.location.origin + "/db?key=" + key + "&temporary=" + temporary;
+  if (dateInit != "") {
+    url += "&date=" + dateInit;
+  }
   $.getJSON(url, function (data) {
     myChart.data.labels = data[0];
     myChart.data.datasets[index].data = data[1];
