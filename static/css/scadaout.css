@@ -1,0 +1,498 @@
+/* clases de las imagenes */
+.img-scada {
+  width: 4rem;
+  height: 4rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* grilla total */
+.grilla-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  column-gap: 0.4rem;
+  row-gap: 0.4rem;
+}
+/* cada item dentro de la grilla */
+.grilla-visual .grilla-item1 {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+  z-index: 1;
+}
+.grilla-visual .grilla-item2 {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+}
+.grilla-visual .grilla-item3 {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  z-index: 1;
+}
+.grilla-visual .grilla-item4 {
+  grid-column: 2;
+  grid-row: 3;
+  position: relative;
+  z-index: 1;
+}
+.grilla-visual .grilla-item5 {
+  grid-column: 3;
+  grid-row: 2;
+  position: relative;
+  z-index: 1;
+}
+.grilla-visual .grilla-item6 {
+  grid-column: 4;
+  grid-row: 2;
+  position: relative;
+  z-index: 1;
+}
+
+.grilla-item1 > a > div {
+  border: 1px solid red;
+}
+
+.grilla-item2 > a > div {
+  border: 1px solid yellow;
+}
+.grilla-item3 > a > div {
+  border: 1px solid lightgray;
+}
+.grilla-item4 > a > div {
+  border: 1px solid green;
+}
+.grilla-item5 > a > div {
+  border: 1px solid lightgray;
+}
+.grilla-item6 > a > div {
+  border: 1px solid red;
+}
+/* span de los h3 para las unidades */
+h3 > span {
+  margin-left: 10px;
+}
+/* posicionamiento de los span */
+.numbersUpdate {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.numbersUpdate > div > div {
+  color: #6c7293;
+  white-space: nowrap;
+}
+
+.numbersUpdate > div {
+  justify-content: flex-end;
+  display: flex;
+}
+.numero {
+  display: flex;
+}
+.grilla > a > div {
+  height: 100%;
+}
+.grilla {
+  padding: 0.5rem;
+}
+.numbersUpdate > h3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.numbersUpdate:nth-child(1) {
+  justify-content: flex-end;
+  align-content: flex-end;
+}
+.numbersUpdate:nth-child(2) {
+  justify-content: flex-start;
+  align-content: flex-end;
+}
+/* eventos del mouse para el modal */
+
+.grilla:hover {
+  cursor: pointer;
+  padding: 0.1rem;
+  transition: all 0.6s ease;
+}
+/* Animaciones */
+.anim1 {
+  background: linear-gradient(to right, black, red, black, red, black);
+  grid-column: 1;
+  grid-row: 2;
+  z-index: 0;
+  animation: animate-line1 5s linear infinite;
+  filter: blur(1px);
+  background-size: 200% 100%;
+  z-index: 0;
+  width: 60%;
+  height: 0.6rem;
+  align-self: center;
+  transform: translate(100%, 0%);
+}
+.anim2 {
+  background: linear-gradient(180deg, black, red, black, red, black);
+  grid-column: 2;
+  grid-row: 1;
+  z-index: 0;
+  animation: animate-line2 5s linear infinite;
+  filter: blur(1px);
+  background-size: 100% 200%;
+  z-index: 0;
+  width: 0.6rem;
+  height: 80%;
+  justify-self: center;
+  transform: translate(0%, 100%);
+}
+.anim3 {
+  background: linear-gradient(to right, black, red, black, red, black);
+  animation: animate-line1 5s linear infinite;
+  grid-column: 2;
+  grid-row: 2;
+  z-index: 0;
+  filter: blur(1px);
+  background-size: 200% 100%;
+  z-index: 0;
+  width: 60%;
+  height: 0.6rem;
+  transform: translate(100%, 0%);
+  align-self: center;
+}
+.anim4 {
+  background: linear-gradient(180deg, black, red, black, red, black);
+  animation: animate-line2 5s linear infinite;
+  grid-column: 2;
+  grid-row: 2;
+  z-index: 0;
+  filter: blur(1px);
+  background-size: 100% 200%;
+  z-index: 0;
+  width: 0.6rem;
+  height: 80%;
+  transform: translate(0%, 100%);
+  justify-self: center;
+}
+.anim5 {
+  background: linear-gradient(to right, black, red, black, red, black);
+  animation: animate-line1 5s linear infinite;
+  z-index: 0;
+  grid-column: 3;
+  grid-row: 2;
+  filter: blur(1px);
+  background-size: 200% 100%;
+  z-index: 0;
+  width: 60%;
+  height: 0.6rem;
+  align-self: center;
+  transform: translate(100%, 0%);
+}
+
+@keyframes animate-line1 {
+  0% {
+    background-position: left bottom;
+  }
+  100% {
+    background-position: right bottom;
+  }
+}
+
+@keyframes animate-line2 {
+  0% {
+    background-position: bottom;
+  }
+  100% {
+    background-position: top;
+  }
+}
+/* llenado de la grilla */
+
+.grilla a {
+  height: 100%;
+  width: 100%;
+}
+
+.llenado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.llenado > .col > .row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+h7 {
+  background-color: #000000;
+}
+/* medias para las pantallas */
+
+@media screen and (max-width: 600px) {
+  .img-scada {
+    width: 2rem;
+    height: 2rem;
+  }
+  .numbersUpdate {
+    justify-content: center;
+  }
+  .llenado {
+    flex-direction: column;
+  }
+}
+
+.online {
+  grid-column: 4;
+  grid-row: 1;
+  position: relative;
+  z-index: 1;
+}
+.online > h7 {
+  color: dimgray;
+}
+/* modal */
+
+.boton-modal {
+  padding: 40px;
+  background-color: #fff;
+}
+.boton-modal label {
+  padding: 10px 15px;
+  background-color: #5488a3;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.boton-modal label:hover {
+  background-color: #185e83;
+}
+/*:::Fin Boton-Modal:::*/
+
+/*:::Ventana Modal:::*/
+#btn-modal {
+  display: none;
+}
+.container-modal {
+  width: 100%;
+  height: max-content;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(144, 148, 150, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 40px;
+  transition: display 0.4s, opacity 0.4s;
+}
+#btn-modal:checked ~ .container-modal {
+  display: flex;
+}
+.content-modal {
+  width: 100%;
+  height: 100%;
+  padding: 0.7rem;
+  border-radius: 4px;
+}
+.content-modal h2 {
+  margin-bottom: 15px;
+}
+.content-modal p {
+  padding: 15px 0px;
+  border-top: 1px solid #dbdbdb;
+  border-bottom: 1px solid #dbdbdb;
+}
+.content-modal .btn-cerrar {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.content-modal .btn-cerrar label {
+  padding: 7px 10px;
+  background-color: #16eb3d;
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.content-modal .btn-cerrar label:hover {
+  background-color: #185e83;
+}
+.cerrar-modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+body {
+  background-color: lightgrey;
+  font-family: sans-serif;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  margin: auto;
+  background-color: white;
+  padding: 1rem;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+ul.slider {
+  position: relative;
+  height: 300px;
+}
+
+ul.slider li {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  opacity: 0;
+  height: max-content;
+  transition: opacity 0.5s;
+  background: #fff;
+  height: 200px;
+}
+
+ul.slider li img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+/* ul.slider li:first-child {
+  opacity: 1; /*Mostramos el primer <li>}*/
+
+ul.slider li:target {
+  opacity: 1;
+}
+/* ul.slider li:target-within {
+  opacity: 0;
+} */
+
+ul.slider li:not(:target) {
+  opacity: 0;
+}
+
+.content-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu {
+  text-align: center;
+  margin: 0.4rem;
+}
+
+.menu li {
+  display: inline-block;
+  text-align: center;
+}
+
+.menu li a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  background-color: grey;
+  padding-top: 0.8rem;
+  width: 6rem;
+  height: 3rem;
+  font-size: 1rem;
+  border-radius: 100%;
+}
+@media screen and (max-width: 800px) {
+  .content-modal {
+    width: 90%;
+  }
+}
+/*:::Fin Ventana Modal:::*/
+
+li[opacity] {
+  opacity: 0; /* Se establece la opacidad en 0 */
+}
+/* flechas para que se vea el flujo de energía derecha izquierda*/
+.arrow-red-left::before {
+  content: "";
+  border-color: transparent transparent transparent red;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-green-left::before {
+  content: "";
+  border-color: transparent green transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-gray-left::before {
+  content: "";
+  border-color: transparent gray transparent gray;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+/* flechas de flujo arriba abajo */
+.arrow-red::before {
+  content: "";
+  border-color: transparent transparent red transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-green::before {
+  content: "";
+  border-color: green transparent transparent transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}
+
+.arrow-gray::before {
+  content: "";
+  border-color: gray transparent gray transparent;
+  border-style: solid;
+  border-width: 10px;
+  width: 0;
+  height: 0;
+  display: block;
+  position: relative;
+}

@@ -2,7 +2,6 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 from pymongo.errors import ExecutionTimeout
 from os import getenv
-from pymongo.errors import ExecutionTimeout
 load_dotenv()
 
 

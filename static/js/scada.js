@@ -1,36 +1,9 @@
-const modal = document.querySelector(".container-modal");
-const carrusel = document.querySelector(".carrusel");
-const liElements = document.querySelectorAll("ul.slider li"); // Selecciona todos los elementos li de la lista ul
-var elemento;
-function mostrarModalGrid(element) {
-  elemento = element;
-  const slide = document.querySelector(element);
-  // const slideUl = document.querySelector(element);
-  //   slide.style.opacity = 1;
-  modal.style.display = "block";
-}
-
-function ocultarModal() {
-  modal.style.display = "none";
-  const slide = document.querySelector(elemento);
-  //   slide.style.opacity = "";
-  //   liElements.forEach((li) => {
-  //     li.style.opacity = 0; // Establece la opacidad en 0
-  //   });
-}
-
-function anteriorSlide() {
-  carrusel.style.left = "0";
-}
-
-function siguienteSlide() {
-  carrusel.style.left = "-100%";
-}
+// digits fromatt
 const formatter = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 1,
   maximumFractionDigits: 1,
 });
-
+// Slice data
 function sliceData(data) {
   let x = data.toString(2).padStart(16, "0");
   let value = [
@@ -40,10 +13,26 @@ function sliceData(data) {
   return value;
 }
 // Actuaización de datos
+
+(async function peticion() {
+  const response = await fetch("https://enerion.ml/info");
+  // const response = await fetch(window.location.origin + "/info");
+  const data = await response.json();
+  data.forEach((key) => {
+    if (key.name == "BatteryCapacitySOC") {
+      let i = Math.round(key.value / 10);
+      for (i; i < 11; i++) {
+        let bat = document.getElementById("barra-bateria" + i.toString());
+        bat.className.baseVal = "barhiding";
+      }
+    }
+  });
+})();
+
 async function getData() {
   try {
-    // const response = await fetch("http://localhost:8000/info");
-    const response = await fetch(window.location.origin + "/info");
+    const response = await fetch("https://enerion.ml/info");
+    // const response = await fetch(window.location.origin + "/info");
     const data = await response.json();
     var year_month;
     var day_hour;
@@ -59,62 +48,64 @@ async function getData() {
         if (key.name == "MinuteANDSecond") {
           minute_seconds = sliceData(key.value);
           let datos =
+            day_hour[0] +
+            "/" +
+            year_month[1] +
+            "/" +
             "20" +
             year_month[0] +
-            "-" +
-            year_month[1] +
-            "-" +
-            day_hour[0] +
-            "-" +
+            " - " +
             day_hour[1] +
             ":" +
-            minute_seconds[0] +
-            ":" +
-            minute_seconds[1];
-          document.getElementById("onlineData").innerHTML = datos;
+            minute_seconds[0];
+          document.getElementById("onlineData").textContent = datos;
         }
         if (key.name == "BatteryCapacitySOC") {
-          document.getElementById("Batterystoredenergy").innerHTML =
+          let bat = document.getElementById(
+            "barra-bateria" + Math.round(key.value / 10)
+          );
+          bat.className.baseVal =
+            Math.round(key.value / 10) > Math.floor(key.value / 10) &&
+            key.value % 5 == 0
+              ? "barhiding"
+              : "";
+          document.getElementById("Batterystoredenergy").textContent =
             formatter.format(key.value * 0.1024);
         }
-        document.getElementById(key.name).innerHTML = key.value;
-        updateArrow(key.name, key.value);
+        let variable = document.getElementById(key.name);
+        if (key.name == "Batteryoutputpower") {
+          let bat2invert = document.getElementById("battery2inverter");
+          bat2invert.className.baseVal =
+            key.value > 0 ? "battery2inverter" : "battery2inverterRev";
+        }
+        if (key.name == "PVinputpower") {
+          let pv2invert = document.getElementById("pv2inverter");
+          pv2invert.className.baseVal = key.value > 0 ? "pv2inverter" : "";
+        }
+        let listPower = [
+          "Loadfrequency",
+          "GridsidevoltageL1-N",
+          "GridsidevoltageL2-N",
+          "Batteryvoltage",
+          "Batterytemperature",
+          "InverteroutputvoltageL1-N",
+          "InverteroutputvoltageL2-N",
+          "Inverteroutputfrequency",
+          "BatteryCapacitySOC",
+        ];
+        variable.textContent = Number.isInteger(key.value)
+          ? key.value
+          : Math.round(key.value);
+        if (!listPower.includes(key.name)) {
+          if (key.value > 1000) {
+            variable.textContent = formatter.format(key.value / 1000);
+            variable.nextElementSibling.textContent = "kW";
+          } else {
+            variable.nextElementSibling.textContent = "W";
+          }
+        }
       } catch (error) {}
     });
   } catch (error) {}
 }
 setInterval(getData, 250);
-
-// flechas de visualización
-function updateArrow(name, number) {
-  let arrow = name + "arrow";
-  let element = document.getElementById(arrow);
-  if (number < 0) {
-    if (
-      element.classList.contains("left-arrow") ||
-      element.classList.contains("arrow-green-left")
-    ) {
-      element.setAttribute("class", "arrow-green-left");
-    } else {
-      element.setAttribute("class", "arrow-green");
-    }
-  } else if (number > 0) {
-    if (
-      element.classList.contains("left-arrow") ||
-      element.classList.contains("arrow-red-left")
-    ) {
-      element.setAttribute("class", "arrow-red-left");
-    } else {
-      element.setAttribute("class", "arrow-red");
-    }
-  } else {
-    if (
-      element.classList.contains("left-arrow") ||
-      element.classList.contains("arrow-gray-left")
-    ) {
-      element.setAttribute("class", "arrow-gray-left");
-    } else {
-      element.setAttribute("class", "arrow-gray");
-    }
-  }
-}

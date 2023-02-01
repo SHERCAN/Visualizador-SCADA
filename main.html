@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="
+            https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js
+            "></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>
+        :root {
+            --bgcolor: #191c24;
+            --txtcolor: #00adeb;
+        }
+
+        html {
+            background: black;
+        }
+
+        .container {
+            width: 90%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            background: var(--bgcolor);
+        }
+
+        .temporalidades {
+            display: flex;
+            justify-content: flex-start;
+            height: 1.5rem;
+            width: 50%;
+        }
+
+        .temporalidades div:hover {
+            color: #6ec7e7;
+            border-radius: 20%;
+            transition: 0.5s;
+        }
+
+        .text-temp::after {
+            display: block;
+            background: #8ab4f8;
+            width: 2rem;
+            border-radius: 4px 4px 0 0;
+            content: "";
+            height: 2px;
+            translate: 0 -6px;
+        }
+
+        .temps {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: var(--bgcolor);
+            font-family: "Open Sans", sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--txtcolor);
+            background-color: var(--bgcolor);
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+    <!-- Chart Start -->
+    <div class="container">
+        <div>
+            <div>
+                <div>
+                    <div class="temporalidades">
+                        <div class="temps">
+                            <div class="dates" tabindex="1">&nbsp;1D&nbsp;</div>
+                        </div>
+                        <div class="temps">
+                            <div class="dates" tabindex="1">&nbsp;5D&nbsp; </div>
+                        </div>
+                        <div class="temps">
+                            <div class="dates" tabindex="1">&nbsp;1M&nbsp; </div>
+                        </div>
+                        <div class="temps">
+                            <div class="dates" tabindex="1">&nbsp;6M&nbsp; </div>
+                        </div>
+                    </div>
+                    <canvas id="line-chart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // consulta de la base de datos para realizar el llenado de la tabla
+        //         SELECT Time_Stamp, BatteryCapacitySOC
+        // FROM TREND001 
+        // WHERE MINUTE(Time_Stamp) % 5 =0 AND Time_Stamp > '2023-01-20';
+        var elements = document.getElementsByClassName("dates");
+        function manageClass() {
+            let divIn = this
+            Array.from(elements).forEach(function (element) {
+                if (divIn != element) {
+                    element.classList.remove("text-temp");
+                } else {
+                    element.classList.add("text-temp");
+                }
+            });
+        }
+        Array.from(elements).forEach(function (element) {
+            element.addEventListener('click', manageClass);
+        });
+    </script>
+    <script>
+        // Single Line Chart
+        var ctx = $("#line-chart").get(0).getContext("2d");
+        Chart.defaults.color = '#8ab4f8';
+        var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, "#0F5DA2");
+        gradient.addColorStop(0.8, "#00000000");
+        gradient.addColorStop(1, "#00000000");
+        Chart.defaults.borderColor = "#ffffff80"
+        const tooltipLine = {
+            id: 'tooltipLine',
+            beforeDraw: chart => {
+                if (chart.tooltip._active && chart.tooltip._active.length) {
+                    const ctx = chart.ctx;
+                    ctx.save();
+                    const activePoint = chart.tooltip._active[0];
+                    ctx.beginPath();
+                    ctx.setLineDash([5, 2]);
+                    ctx.moveTo(activePoint.element.x, chart.chartArea.top);
+                    ctx.lineTo(activePoint.element.x, chart.chartArea.bottom);
+                    ctx.lineWidth = 1;
+                    ctx.strokeStyle = '#D3D3D3';
+                    ctx.stroke();
+                    ctx.restore();
+                }
+            }
+        }
+        var myChart = new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00',],
+                datasets: [{
+                    fill: true,
+                    label: 'Battery Energy',
+                    data: [12, 19, 3, 17, 6, 3, 7, 13, 15, 1, 20, 13, 16, 3, 12, 6, 7, 4, 3, 1, 6, 4, 8, 9, 1, 8, 1, 1, 16, 17, 15, 13, 12],
+                    borderColor: "#0F5DA2",
+                    pointBackgroundColor: "#0F5DA2",
+                    backgroundColor: gradient,
+                    hidden: true
+                }, {
+                    label: 'Battery Power',
+                    data: [2, 29, 5, 5, 2, 3, 10],
+                    borderColor: "#0F5DA2",
+                    pointBackgroundColor: "#0F5DA2",
+                    backgroundColor: "#0F5DA2",
+                }
+                    , {
+                    label: 'Grid Power',
+                    data: [5, 13, 5, 5, 14, 3, 2],
+                    borderColor: "#EE0D0D",
+                    pointBackgroundColor: "#EE0D0D",
+                    backgroundColor: "#EE0D0D",
+                    hidden: true,
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        onClick: (e, legendItem, legend) => {
+                            const showValue = myChart.isDatasetVisible(legendItem.datasetIndex);
+                            var index = legendItem.datasetIndex;
+                            var ci = myChart;
+                            if (!showValue) {
+                                ci.data.datasets.forEach(function (e, i) {
+                                    if (index != i) { ci.hide(i); }
+                                    else { ci.show(i); }
+                                });
+                            }
+                        },
+                        labels: {
+                            useBorderRadius: true,
+                            borderRadius: 6,
+                            boxWidth: 12
+                        }
+                    },
+                    labels: {
+                        color: '#4f4f51',
+                        padding: 10,
+                        boxWidth: 40,
+                        usePointStyle: true,
+                        font: {
+                            size: 12
+                        }
+                    },
+
+                },
+            },
+            plugins: [tooltipLine]
+        });
+    </script>
+</body>
+
+</html>

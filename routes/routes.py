@@ -1,28 +1,17 @@
 # -----------------------------------modules-----------------------------
 from security.verify_route import VerifyTokenRoute
-import uvicorn
-from fastapi import FastAPI
-# from routes.main import web
-# from config.var_env import mode
-from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi import Request, Form
-from fastapi.responses import HTMLResponse
+from fastapi import Request, Form, APIRouter
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
-import datetime as dt
-from fastapi import APIRouter
 from starlette.responses import RedirectResponse
-import pathlib
 import json
 from datetime import datetime
-from security.auth import auth_routes
 from dotenv import load_dotenv
 from config.bd import dataBase
-from fastapi.responses import FileResponse
+from config.dbsql import dataSql
 from csv import DictWriter
 from bson.objectid import ObjectId
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from requests import get
 load_dotenv()
@@ -55,7 +44,7 @@ async def mainindex(request: Request):
 
 @routes.get('/', response_class=HTMLResponse)
 async def mainToIndex():
-    response = RedirectResponse('/saving')
+    response = RedirectResponse('/scada')
     return response
 
 
@@ -142,10 +131,10 @@ async def get_registers(request: Request):
     return FileResponse('data.csv', filename='data.csv')
 
 
-@ routes.get('/chart', response_class=HTMLResponse)
+@ routes.get('/charts', response_class=HTMLResponse)
 async def main(request: Request):
     context = {'request': request}
-    response = templates.TemplateResponse('chart.html', context=context)
+    response = templates.TemplateResponse('charts.html', context=context)
     return response
 # @routes.post('/', response_class=HTMLResponse)
 # async def main(request: Request):
@@ -155,7 +144,7 @@ async def main(request: Request):
 #     return response
 
 
-@ routes.get('/scada', response_class=HTMLResponse)
+@routes.get('/scada', response_class=HTMLResponse)
 async def scadaGet(request: Request):
     context = {'request': request}
     response = templates.TemplateResponse('scada.html', context=context)
@@ -195,3 +184,23 @@ async def companiRates(value: str = '', sector: str = '', company: str = '', sub
     except:
         listCo = {'data': 'error'}
     return listCo
+
+
+@routes.get('/scadacopy', response_class=HTMLResponse)
+async def scadacopy(request: Request):
+    context = {'request': request}
+    return templates.TemplateResponse('scadacopy.html', context=context)
+
+
+@routes.get('/db', response_class=JSONResponse)
+async def db(key: str, temporary: str):
+    try:
+        responseSql = dataSql.getQuery(
+            key=key, temporary=temporary)
+        if len(responseSql[0]) == 0:
+            return [[0], [0]]
+        else:
+            return responseSql
+    except Exception as e:
+        print("except", e)
+        return {'data': 'error'}
